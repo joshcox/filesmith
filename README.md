@@ -1,3 +1,6 @@
+[![build status](https://api.travis-ci.org/joshcox/filesmith.png?branch=master)](http://travis-ci.org/joshcox/filesmith)
+[![npm version](https://badge.fury.io/js/filesmith.svg)](https://badge.fury.io/js/filesmith)
+
 Generate helpers for setting up and tearing down a directory of fixtures. 
 
 ## What's it do?
