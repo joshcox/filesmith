@@ -1,6 +1,6 @@
 import path from "path";
 import fs from "fs";
-import filesmith from "../src";
+import {filesmith} from "../src";
 import {promisify} from "util";
 
 const lstatP = promisify(fs.lstat);

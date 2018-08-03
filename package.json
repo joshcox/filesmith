@@ -2,6 +2,20 @@
   "name": "filesmith",
   "description": "Generate helpers for setting up and tearing down a directory of fixtures.",
   "version": "0.1.0",
+  "keywords": ["fixture", "file", "directory", "test", "helpers"],
+  "homepage": "https://github.com/joshcox/filesmith",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshcox/filesmith.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joshcox/filesmith/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Josh Cox",
+    "email": "cox.josh.d@gmail.com"
+  },
   "scripts": {
     "build": "tsc --declaration",
     "build:watch": "tsc --declaration -w",
