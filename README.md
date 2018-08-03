@@ -1,10 +1,10 @@
 Generate helpers for setting up and tearing down a directory of fixtures. 
 
 ## What's it do?
-1. You give `smithy` a folder structure in the form of an object. Keep it simple - one directory at a time, please.
-2. `smithy` gives you three functions:
+1. You give `filesmith` a folder structure in the form of an object. Keep it simple - one directory at a time, please.
+2. `filesmith` gives you three functions:
     * `getFixturePath :: () => string` - A function that returns the path to the root of the fixture directory
-    * `setup :: () => Promise<string>` - A function that creates the directory structure originally declared to `smithy`. It resolves with the `fixturePath`, for good measure.
+    * `setup :: () => Promise<string>` - A function that creates the directory structure originally declared to `filesmith`. It resolves with the `fixturePath`, for good measure.
     * `teardown :: () => Promise<void>` - A function that removes the directory structure
 
 ### NOTE
@@ -12,10 +12,10 @@ Generate helpers for setting up and tearing down a directory of fixtures.
 
 ## Usage
 ```typescript
-import smithy from "smithy";
+import filesmith from "filesmith";
 
-describe("Smithy Usage Example", () => {
-    const {setup, teardown, getFixturePath} = smithy({
+describe("filesmith Usage Example", () => {
+    const {setup, teardown, getFixturePath} = filesmith({
         "directory1": {
             "file1.txt": "mock content 1"
         },

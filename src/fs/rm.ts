@@ -1,5 +1,5 @@
 /**
- * @module smithy/fs/rm
+ * @module filesmith/fs/rm
  * Recursively remove a path from the file system
  */
 

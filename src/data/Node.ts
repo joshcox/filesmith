@@ -1,9 +1,9 @@
 /**
- * @module smithy/data/Node
+ * @module filesmith/data/Node
  * Internal File/Directory representation
  */
 
-import {SmithyFixtures} from "../types/Smithy";
+import {FilesmithFixtures} from "../types/FileSmith";
 
 enum NodeKind {
     Directory,
@@ -52,9 +52,9 @@ export function create(name: string, contents: string | Node[]) {
 }
 
 /**
- * Create an array of {@link Node} objects from a {@link SmithyFixtures}
+ * Create an array of {@link Node} objects from a {@link FilesmithFixtures}
  */
-export const fromSmithyStructure = (fixtures: SmithyFixtures): Node[] => Object
+export const fromfilesmithStructure = (fixtures: FilesmithFixtures): Node[] => Object
     .keys(fixtures)
     .reduce((nodes: Node[], name: string): Node[] => {
         const contents = fixtures[name];
@@ -62,6 +62,6 @@ export const fromSmithyStructure = (fixtures: SmithyFixtures): Node[] => Object
             ...nodes,
             typeof contents === "string"
                 ? create(name, contents)
-                : create(name, fromSmithyStructure(contents))
+                : create(name, fromfilesmithStructure(contents))
         ];
     }, []);

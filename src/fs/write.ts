@@ -1,5 +1,5 @@
 /**
- * @module smithy/fs/write
+ * @module filesmith/fs/write
  * Write fixtures out to a directory
  */
 

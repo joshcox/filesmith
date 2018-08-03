@@ -1,5 +1,5 @@
 {
-  "name": "smithy",
+  "name": "filesmith",
   "description": "Generate helpers for setting up and tearing down a directory of fixtures.",
   "version": "0.0.0",
   "scripts": {

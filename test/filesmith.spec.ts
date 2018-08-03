@@ -1,13 +1,13 @@
 import path from "path";
 import fs from "fs";
-import smithy from "../src";
+import filesmith from "../src";
 import {promisify} from "util";
 
 const lstatP = promisify(fs.lstat);
 const readFileP = promisify(fs.readFile);
 
-describe("smithy", () => {
-    const {setup, teardown, getFixturePath} = smithy({
+describe("filesmith", () => {
+    const {setup, teardown, getFixturePath} = filesmith({
         "directory1": {
             "file1.txt": "mock content 1"
         },
