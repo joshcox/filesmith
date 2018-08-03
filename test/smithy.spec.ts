@@ -6,7 +6,7 @@ import {promisify} from "util";
 const lstatP = promisify(fs.lstat);
 const readFileP = promisify(fs.readFile);
 
-describe("Smithy Usage Example", () => {
+describe("smithy", () => {
     const {setup, teardown, getFixturePath} = smithy({
         "directory1": {
             "file1.txt": "mock content 1"

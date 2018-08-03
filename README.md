@@ -1,3 +1,46 @@
-Declare the structure of your file and directory fixtures to `smithy` and you will be provided with functions to `setup` and `teardown` that directory structure for usage within tests. 
+Generate helpers for setting up and tearing down a directory of fixtures. 
+
+## What's it do?
+1. You give `smithy` a folder structure in the form of an object. Keep it simple - one directory at a time, please.
+2. `smithy` gives you three functions:
+    * `getFixturePath :: () => string` - A function that returns the path to the root of the fixture directory
+    * `setup :: () => Promise<string>` - A function that creates the directory structure originally declared to `smithy`. It resolves with the `fixturePath`, for good measure.
+    * `teardown :: () => Promise<void>` - A function that removes the directory structure
+
+### NOTE
+* If you're `setup`ing the same fixture directory more than once - do your due diligence and `teardown` between calls to `setup`
 
 ## Usage
+```typescript
+import smithy from "smithy";
+
+describe("Smithy Usage Example", () => {
+    const {setup, teardown, getFixturePath} = smithy({
+        "directory1": {
+            "file1.txt": "mock content 1"
+        },
+        "directory2": {
+            "directory3": {}
+        }
+    });
+
+    describe("setup", () => {
+        beforeAll(setup);
+        afterAll(teardown);
+
+        it("can creates files", () =>
+            expect(readFileP(path.resolve(getFixturePath(), "directory1/file1.txt"), "utf8"))
+                .resolves.toBe("mock content 1"));
+
+        it("can create a directory", () =>
+            expect(lstatP(path.resolve(getFixturePath(), "directory2"))
+                .then((stats: fs.Stats): boolean => stats.isDirectory())
+            ).resolves.toBeTruthy());
+
+        it("can create nested directories", () =>
+            expect(lstatP(path.resolve(getFixturePath(), "directory2", "directory3"))
+                .then((stats: fs.Stats): boolean => stats.isDirectory())
+            ).resolves.toBeTruthy());
+    });
+})
+```
