@@ -12,7 +12,7 @@ Generate helpers for setting up and tearing down a directory of fixtures.
 
 ## Usage
 ```typescript
-import filesmith from "filesmith";
+import {filesmith} from "filesmith";
 
 describe("filesmith Usage Example", () => {
     const {setup, teardown, getFixturePath} = filesmith({
