@@ -1,0 +1,23 @@
+{
+  "name": "smithy",
+  "description": "Generate helpers for setting up and tearing down a directory of fixtures.",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "tsc --declaration",
+    "build:watch": "tsc --declaration -w",
+    "lint": "tslint -p tsconfig.json -t stylish",
+    "test": "jest --config jest.config.js --forceExit --color --detectOpenHandles",
+    "test:watch": "jest --config jest.config.js --color --detectOpenHandles --watchAll"
+  },
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "devDependencies": {
+    "@types/jest": "^23.3.1",
+    "@types/node": "^10.5.5",
+    "@types/rimraf": "^2.0.2",
+    "jest": "^23.4.2",
+    "ts-jest": "^23.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1"
+  }
+}
