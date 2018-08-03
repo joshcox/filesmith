@@ -1,7 +1,7 @@
 {
   "name": "filesmith",
   "description": "Generate helpers for setting up and tearing down a directory of fixtures.",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "build": "tsc --declaration",
     "build:watch": "tsc --declaration -w",
