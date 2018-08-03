@@ -24,23 +24,21 @@ describe("filesmith Usage Example", () => {
         }
     });
 
-    describe("setup", () => {
-        beforeAll(setup);
-        afterAll(teardown);
+     beforeAll(setup);
+     afterAll(teardown);
 
-        it("can creates files", () =>
-            expect(readFileP(path.resolve(getFixturePath(), "directory1/file1.txt"), "utf8"))
-                .resolves.toBe("mock content 1"));
+     it("can creates files", () =>
+         expect(readFileP(path.resolve(getFixturePath(), "directory1/file1.txt"), "utf8"))
+             .resolves.toBe("mock content 1"));
 
-        it("can create a directory", () =>
-            expect(lstatP(path.resolve(getFixturePath(), "directory2"))
-                .then((stats: fs.Stats): boolean => stats.isDirectory())
-            ).resolves.toBeTruthy());
+     it("can create a directory", () =>
+         expect(lstatP(path.resolve(getFixturePath(), "directory2"))
+             .then((stats: fs.Stats): boolean => stats.isDirectory())
+         ).resolves.toBeTruthy());
 
-        it("can create nested directories", () =>
-            expect(lstatP(path.resolve(getFixturePath(), "directory2", "directory3"))
-                .then((stats: fs.Stats): boolean => stats.isDirectory())
-            ).resolves.toBeTruthy());
-    });
+     it("can create nested directories", () =>
+         expect(lstatP(path.resolve(getFixturePath(), "directory2", "directory3"))
+             .then((stats: fs.Stats): boolean => stats.isDirectory())
+         ).resolves.toBeTruthy());
 })
 ```
