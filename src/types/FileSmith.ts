@@ -3,11 +3,11 @@
  * Input and Output types of filesmith
  */
 
-export interface FilesmithFixtures {
-    [name: string]: FilesmithFixtures | string;
+export interface IFilesmithFixtures {
+    [name: string]: IFilesmithFixtures | string;
 }
 
-export interface FileSmith {
+export interface IFileSmith {
     getFixturePath(): string;
     setup(): Promise<string>;
     teardown(): Promise<void>;

@@ -3,7 +3,7 @@
  * Internal File/Directory representation
  */
 
-import {FilesmithFixtures} from "../types/FileSmith";
+import {IFilesmithFixtures} from "../types/FileSmith";
 
 enum NodeKind {
     Directory,
@@ -54,7 +54,7 @@ export function create(name: string, contents: string | Node[]) {
 /**
  * Create an array of {@link Node} objects from a {@link FilesmithFixtures}
  */
-export const fromfilesmithStructure = (fixtures: FilesmithFixtures): Node[] => Object
+export const fromfilesmithStructure = (fixtures: IFilesmithFixtures): Node[] => Object
     .keys(fixtures)
     .reduce((nodes: Node[], name: string): Node[] => {
         const contents = fixtures[name];
