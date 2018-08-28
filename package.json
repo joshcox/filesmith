@@ -9,7 +9,7 @@
     "test",
     "helpers"
   ],
-  "homepage": "https://github.com/joshcox/filesmith",
+  "homepage": "https://joshcox.github.io/filesmith/",
   "repository": {
     "type": "git",
     "url": "https://github.com/joshcox/filesmith.git"
@@ -25,6 +25,11 @@
   "scripts": {
     "build": "tsc --declaration",
     "build:watch": "tsc --declaration -w",
+    "clean": "npm run clean:api && npm run clean:lib",
+    "clean:api": "rimraf ./api",
+    "clean:lib": "rimraf ./lib",
+    "deploy:docs": "npm run clean:api && npm run docs && gh-pages -d api -m \"Update: Docs\"",
+    "docs": "typedoc --options typedoc.json",
     "lint": "tslint -p tsconfig.json -t stylish",
     "test": "jest --config jest.config.js --forceExit --color --detectOpenHandles",
     "test:watch": "jest --config jest.config.js --color --detectOpenHandles --watchAll"
@@ -35,9 +40,11 @@
     "@types/jest": "^23.3.1",
     "@types/node": "^10.5.5",
     "@types/rimraf": "^2.0.2",
+    "gh-pages": "^1.2.0",
     "jest": "^23.4.2",
     "ts-jest": "^23.0.1",
     "tslint": "^5.11.0",
+    "typedoc": "^0.12.0",
     "typescript": "^3.0.1"
   }
 }
