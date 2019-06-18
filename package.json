@@ -31,7 +31,7 @@
     "deploy:docs": "npm run clean:api && npm run docs && gh-pages -d api -m \"Update: Docs\"",
     "docs": "typedoc --options typedoc.json",
     "lint": "tslint -p tsconfig.json -t stylish",
-    "test": "jest",
+    "test": "jest"
   },
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",

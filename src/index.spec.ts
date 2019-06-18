@@ -1,6 +1,6 @@
 import { resolve } from "path";
 import fs from "fs";
-import {filesmith} from "../src";
+import {filesmith} from "./";
 import {promisify} from "util";
 
 const lstatP = promisify(fs.lstat);
@@ -8,11 +8,11 @@ const readFileP = promisify(fs.readFile);
 
 describe("filesmith", () => {
     const {setup, teardown, getFixturePath} = filesmith({
-        "directory1": {
+        directory1: {
             "file1.txt": "mock content 1"
         },
-        "directory2": {
-            "directory3": {}
+        directory2: {
+            directory3: {}
         }
     });
 
@@ -49,6 +49,6 @@ describe("filesmith", () => {
         describe("when there's nothing to teardown", () => {
             beforeAll(teardown);
             it("succeeds since technically it's not there", () => expect(teardown()).resolves.toBe(undefined));
-        })
+        });
     });
 });
