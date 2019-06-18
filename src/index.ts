@@ -12,6 +12,8 @@ import {fromfilesmithStructure} from "./data/Node";
 import {IFileSmith, IFilesmithFixtures} from "./types/FileSmith";
 export {IFileSmith, IFilesmithFixtures} from "./types/FileSmith";
 
+export { merge } from "./merge";
+
 /**
  * Create a suite for smithing a fixture directory
  */
