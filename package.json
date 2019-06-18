@@ -24,7 +24,6 @@
   },
   "scripts": {
     "build": "tsc --declaration",
-    "build:watch": "tsc --declaration -w",
     "clean": "npm run clean:api && npm run clean:lib",
     "clean:api": "rimraf ./api",
     "clean:lib": "rimraf ./lib",
