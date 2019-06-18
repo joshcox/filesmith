@@ -1,4 +1,4 @@
-import path from "path";
+import { resolve } from "path";
 import fs from "fs";
 import {filesmith} from "../src";
 import {promisify} from "util";
@@ -21,16 +21,16 @@ describe("filesmith", () => {
         afterAll(teardown);
 
         it("can creates files", () =>
-            expect(readFileP(path.resolve(getFixturePath(), "directory1/file1.txt"), "utf8"))
+            expect(readFileP(resolve(getFixturePath(), "directory1/file1.txt"), "utf8"))
                 .resolves.toBe("mock content 1"));
 
         it("can create a directory", () =>
-            expect(lstatP(path.resolve(getFixturePath(), "directory2"))
+            expect(lstatP(resolve(getFixturePath(), "directory2"))
                 .then((stats: fs.Stats): boolean => stats.isDirectory())
             ).resolves.toBeTruthy());
 
         it("can create nested directories", () =>
-            expect(lstatP(path.resolve(getFixturePath(), "directory2", "directory3"))
+            expect(lstatP(resolve(getFixturePath(), "directory2", "directory3"))
                 .then((stats: fs.Stats): boolean => stats.isDirectory())
             ).resolves.toBeTruthy());
 
