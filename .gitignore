@@ -2,5 +2,4 @@ node_modules/
 .idea/
 lib/
 api/
-package-lock.json
 dist/
