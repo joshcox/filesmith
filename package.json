@@ -1,7 +1,7 @@
 {
   "name": "filesmith",
   "description": "Generate helpers for setting up and tearing down a directory of fixtures.",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "keywords": [
     "fixture",
     "file",

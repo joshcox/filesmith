@@ -16,13 +16,13 @@ const fixtures = {
 };
 
 describe("filesmith", () => {
-    const { setup, teardown, getFixturePath } = filesmith()(fixtures);
+    const { setup, teardown, getFixturePath } = filesmith(fixtures);
 
     describe('options', () => {
         describe('the fixturePath option', () => {
             const fixturePath = path.resolve(__dirname, 'test-fixture');
             
-            const { setup, teardown, getFixturePath } = filesmith({ fixturePath })(fixtures);
+            const { setup, teardown, getFixturePath } = filesmith(fixtures, { fixturePath });
 
             beforeAll(setup);
             afterAll(teardown);

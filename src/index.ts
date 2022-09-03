@@ -9,13 +9,19 @@ import path from "path";
 import { rm } from "./fs/rm";
 import { write } from "./fs/write";
 import { fromfilesmithStructure } from "./data/Node";
-import { IFileSmith, IFilesmithFixtures } from "./types/FileSmith";
-export { IFileSmith, IFilesmithFixtures } from "./types/FileSmith";
+import { FileSmith, Fixtures, Options } from "./types/FileSmith";
+
+export {
+    FileSmith,
+    Fixtures as FileSmithFixtures,
+    Options as FileSmithOptions,
+    IFileSmith, IFilesmithFixtures
+} from "./types/FileSmith";
 
 /**
  * Create a suite for smithing a fixture directory
  */
-export const filesmith = ({ fixturePath }: { fixturePath?: string } = {}) => (fixtures: IFilesmithFixtures): IFileSmith => {
+export const filesmith = (fixtures: Fixtures, { fixturePath }: Options = {}): FileSmith => {
     // Create a unique file path within the operating system's temp directory
     fixturePath = fixturePath ?? path.resolve(tmpdir(), randomBytes(16).toString("hex"));
 
