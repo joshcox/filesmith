@@ -1,11 +1,10 @@
-[![build status](https://api.travis-ci.org/joshcox/filesmith.png?branch=master)](http://travis-ci.org/joshcox/filesmith)
 [![npm version](https://badge.fury.io/js/filesmith.svg)](https://badge.fury.io/js/filesmith)
 
 Generate helpers for setting up and tearing down a directory of fixtures. 
 
 ## What's it do?
 1. You give `filesmith` a folder structure in the form of an object. Keep it simple - one directory at a time, please.
-2. `filesmith` gives you three functions:
+2. `filesmith()` gives you three functions:
     * `getFixturePath :: () => string` - A function that returns the path to the root of the fixture directory
     * `setup :: () => Promise<string>` - A function that creates the directory structure originally declared to `filesmith`. It resolves with the `fixturePath`, for good measure.
     * `teardown :: () => Promise<void>` - A function that removes the directory structure

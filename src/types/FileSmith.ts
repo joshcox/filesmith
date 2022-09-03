@@ -3,12 +3,26 @@
  * Input and Output types of filesmith
  */
 
-export interface IFilesmithFixtures {
-    [name: string]: IFilesmithFixtures | string;
-}
+export type Fixtures = {
+    [name: string]: Fixtures | string;
+};
 
-export interface IFileSmith {
+export type Options = { 
+    fixturePath?: string 
+};
+
+/**
+ * @deprecated Use FileSmithFixtures instead
+ */
+export type IFilesmithFixtures = Fixtures;
+
+export type FileSmith = {
     getFixturePath(): string;
     setup(): Promise<string>;
     teardown(): Promise<void>;
-}
+};
+
+/**
+ * @deprecated Use FileSmith instead
+ */
+export type IFileSmith = FileSmith;

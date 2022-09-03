@@ -1,50 +1,71 @@
-import { resolve } from "path";
+import path, { resolve } from "path";
 import fs from "fs";
-import {filesmith} from "./";
-import {promisify} from "util";
+import { filesmith } from "./";
+import { promisify } from "util";
 
 const lstatP = promisify(fs.lstat);
 const readFileP = promisify(fs.readFile);
 
+const fixtures = {
+    directory1: {
+        "file1.txt": "mock content 1"
+    },
+    directory2: {
+        directory3: {}
+    }
+};
+
 describe("filesmith", () => {
-    const {setup, teardown, getFixturePath} = filesmith({
-        directory1: {
-            "file1.txt": "mock content 1"
-        },
-        directory2: {
-            directory3: {}
-        }
+    const { setup, teardown, getFixturePath } = filesmith(fixtures);
+
+    describe('options', () => {
+        describe('the fixturePath option', () => {
+            const fixturePath = path.resolve(__dirname, 'test-fixture');
+            
+            const { setup, teardown, getFixturePath } = filesmith(fixtures, { fixturePath });
+
+            beforeAll(setup);
+            afterAll(teardown);
+
+            it('getFixturePath returns the fixturePath value', async () => {
+                expect(getFixturePath()).toBe(fixturePath);
+            });
+
+            it('creates the fixture directory at fixturePath', async () => {
+                const stats = await lstatP(resolve(getFixturePath()));
+                expect(stats.isDirectory()).toBeTruthy();
+            });
+        });
     });
 
     describe("setup", () => {
         beforeAll(setup);
         afterAll(teardown);
 
-        it("can creates files", () =>
-            expect(readFileP(resolve(getFixturePath(), "directory1/file1.txt"), "utf8"))
-                .resolves.toBe("mock content 1"));
+        it("can creates files", async () => {
+            const file = await readFileP(resolve(getFixturePath(), "directory1/file1.txt"), "utf8");
+            expect(file).toBe("mock content 1");
+        });
 
-        it("can create a directory", () =>
-            expect(lstatP(resolve(getFixturePath(), "directory2"))
-                .then((stats: fs.Stats): boolean => stats.isDirectory())
-            ).resolves.toBeTruthy());
-
-        it("can create nested directories", () =>
-            expect(lstatP(resolve(getFixturePath(), "directory2", "directory3"))
-                .then((stats: fs.Stats): boolean => stats.isDirectory())
-            ).resolves.toBeTruthy());
-
+        it("can create a directory", async () => {
+            const stats = await lstatP(resolve(getFixturePath(), "directory2"));
+            expect(stats.isDirectory()).toBeTruthy();
+        });
+        
+        it('can create nested directories', async () => {
+            const stats = await lstatP(resolve(getFixturePath(), "directory2", "directory3"));
+            expect(stats.isDirectory()).toBeTruthy();
+        })
     });
 
     describe("teardown", () => {
         beforeAll(setup);
-        it("removes the fixtures directory", () => expect(
-            lstatP(getFixturePath())
-                .then((stats) => expect(stats.isDirectory()).toBeTruthy())
-                .then(teardown)
-                .then(() => lstatP(getFixturePath()))
-                .catch((err) => err.code)
-        ).resolves.toBe("ENOENT"));
+        it("removes the fixtures directory", async () => {
+            const stats = await lstatP(getFixturePath());
+            expect(stats.isDirectory()).toBeTruthy();
+            await teardown();
+            await expect(lstatP(getFixturePath())).rejects.toThrow();
+        });
 
         describe("when there's nothing to teardown", () => {
             beforeAll(teardown);
