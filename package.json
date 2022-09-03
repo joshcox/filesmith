@@ -27,7 +27,7 @@
     "build:watch": "tsc --declaration -w",
     "clean": "npm run clean:api && npm run clean:lib",
     "clean:api": "rimraf ./api",
-    "clean:lib": "rimraf ./lib",
+    "clean:lib": "rimraf ./dist",
     "deploy:docs": "npm run clean:api && npm run docs && gh-pages -d api -m \"Update: Docs\"",
     "docs": "typedoc --options typedoc.json",
     "lint": "tslint -p tsconfig.json -t stylish",
